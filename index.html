@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Octopus Legacy – Professional Will Writing Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #160535;
+      --cream: #fffef3;
+      --blue-light: #e9f4fb;
+      --pink: #d946a8;
+      --white: #ffffff;
+      --text-dark: #160535;
+      --text-muted: #4a4060;
+      --label-bg: #ede8f5;
+      --label-text: #3d2c6e;
+      --check-bg: #160535;
+      --check-color: #ffffff;
+      --green-star: #00b67a;
+    }
+
+    html {
+      font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      background-color: var(--cream);
+      color: var(--text-dark);
+    }
+
+    body {
+      background-color: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--navy);
+      width: 100%;
+    }
+
+    .navbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      color: var(--white);
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+    .logo span { font-weight: 400; }
+    .logo strong { font-weight: 700; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.375rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.08); }
+
+    .nav-chevron {
+      font-size: 0.75rem;
+      opacity: 0.85;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .btn-start-nav {
+      color: var(--white);
+      border: 1.5px solid var(--white);
+      background: transparent;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-start-nav:hover { background: rgba(255,255,255,0.12); }
+
+    .nav-signin {
+      color: var(--pink);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .nav-signin:hover { text-decoration: underline; }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero-section {
+      background-color: var(--cream);
+      padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .hero-card {
+      max-width: 1280px;
+      margin: 0 auto;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: flex-end;
+      /* Warm sepia gradient simulating the grandmother + child photo */
+      background:
+        linear-gradient(
+          to right,
+          rgba(12, 4, 35, 0.75) 0%,
+          rgba(12, 4, 35, 0.55) 40%,
+          rgba(12, 4, 35, 0.1) 65%,
+          rgba(12, 4, 35, 0.05) 100%
+        ),
+        linear-gradient(
+          135deg,
+          #3d2410 0%,
+          #6b3a1f 20%,
+          #8b5e3c 40%,
+          #a07850 55%,
+          #c4956a 70%,
+          #d4a882 85%,
+          #bfa080 100%
+        );
+    }
+
+    /* Subtle grain texture overlay */
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    /* Silhouette shapes for visual interest */
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 55%;
+      background: radial-gradient(ellipse at 70% 40%, rgba(180,130,90,0.45) 0%, rgba(100,60,30,0.3) 50%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 3rem 3.5rem 3rem;
+      max-width: 560px;
+      width: 100%;
+    }
+
+    .hero-heading {
+      color: var(--white);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtext {
+      color: rgba(255,255,255,0.88);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.55;
+      margin-bottom: 1.75rem;
+      max-width: 380px;
+    }
+
+    .trustpilot-row {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .tp-excellent {
+      color: var(--white);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .tp-stars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .tp-star {
+      width: 22px;
+      height: 22px;
+      background-color: var(--green-star);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tp-star-half {
+      background: linear-gradient(to right, var(--green-star) 70%, #aaa 70%);
+    }
+
+    .tp-star svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .tp-label {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      color: var(--navy);
+      border: none;
+      padding: 0.8rem 1.75rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-hero:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero-photo-credit {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.5rem;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.75rem;
+      font-weight: 400;
+      z-index: 2;
+      font-style: italic;
+    }
+
+    /* ─── WILLS SECTION ──────────────────────────────────────── */
+    .wills-section {
+      background-color: var(--cream);
+      padding: 5rem 1.5rem;
+    }
+
+    .wills-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .will-card {
+      background: var(--white);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      box-shadow: 0 2px 16px rgba(22,5,53,0.07), 0 1px 4px rgba(22,5,53,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .will-label {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--label-bg);
+      color: var(--label-text);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.35rem 0.875rem;
+      border-radius: 0.375rem;
+      margin-bottom: 1rem;
+      width: fit-content;
+      letter-spacing: 0.01em;
+    }
+
+    .will-desc {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    .will-price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      line-height: 1;
+    }
+
+    .will-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+
+    .will-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      font-weight: 400;
+      line-height: 1.45;
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .check-icon svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .btn-center-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-get-started {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-get-started:hover {
+      background: #2a1060;
+      transform: translateY(-1px);
+    }
+
+    /* ─── LPA SECTION ────────────────────────────────────────── */
+    .lpa-section {
+      background-color: var(--blue-light);
+      padding: 2rem 1.5rem;
+    }
+
+    .lpa-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .title-subtitle-blocks {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      border-radius: 1.5rem;
+      padding: 5rem 1.25rem;
+      background-color: var(--blue-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .lpa-heading {
+      text-align: center;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      max-width: 680px;
+    }
+
+    .lpa-subtext {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      max-width: 640px;
+    }
+
+    .lpa-card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 2px 12px rgba(22,5,53,0.05);
+    }
+
+    .lpa-service-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .lpa-price-headline {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 0.875rem;
+    }
+
+    .lpa-detail {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1023px) {
+      .hero-content {
+        padding: 2.5rem 2.5rem 2.5rem;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+
+      .hero-section { padding: 1.25rem 1rem 1rem; }
+
+      .hero-card {
+        min-height: 480px;
+        align-items: flex-start;
+      }
+
+      .hero-content {
+        padding: 2.5rem 1.75rem 5rem;
+        max-width: 100%;
+      }
+
+      .hero-heading { font-size: 2rem; }
+
+      .hero-photo-credit {
+        bottom: 0.75rem;
+        right: 1rem;
+        font-size: 0.6875rem;
+      }
+
+      .wills-section { padding: 3rem 1rem; }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .lpa-section { padding: 1rem 1rem; }
+
+      .title-subtitle-blocks {
+        padding: 3rem 1.25rem;
+      }
+
+      .navbar-inner { padding: 0 1rem; }
+      .btn-start-nav { padding: 0.45rem 1rem; font-size: 0.875rem; }
+    }
+
+    @media (min-width: 640px) {
+      .title-subtitle-blocks { gap: 2.5rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .navbar-inner { height: 89px; }
+      .title-subtitle-blocks {
+        gap: 4rem;
+        padding-top: 7rem;
+        padding-bottom: 7rem;
+        margin-bottom: 0.75rem;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .title-subtitle-blocks {
+        padding-top: 9rem;
+        padding-bottom: 9rem;
+      }
+    }
+
+    @media (min-width: 376px) {
+      .title-subtitle-blocks {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
+    /* ─── SAVINGS CALCULATOR ─────────────────────────────────── */
+    .calc-section {
+      background-color: var(--cream);
+      padding: 5rem 1.5rem;
+      border-top: 1px solid rgba(22,5,53,0.07);
+    }
+
+    .calc-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .calc-card {
+      background: var(--white);
+      border-radius: 1.5rem;
+      padding: 3rem;
+      box-shadow: 0 2px 24px rgba(22,5,53,0.08), 0 1px 4px rgba(22,5,53,0.04);
+    }
+
+    .calc-header {
+      margin-bottom: 2.25rem;
+    }
+
+    .calc-title {
+      font-size: clamp(1.4rem, 2.5vw, 1.875rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .calc-subtitle {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .calc-rate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--label-bg);
+      color: var(--label-text);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      margin-top: 0.75rem;
+    }
+
+    .calc-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .calc-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .calc-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.01em;
+    }
+
+    .calc-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .calc-input-prefix,
+    .calc-input-suffix {
+      position: absolute;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      pointer-events: none;
+      user-select: none;
+    }
+    .calc-input-prefix { left: 1rem; }
+    .calc-input-suffix { right: 1rem; }
+
+    .calc-input {
+      width: 100%;
+      border: 1.5px solid rgba(22,5,53,0.18);
+      border-radius: 0.75rem;
+      padding: 0.875rem 1rem 0.875rem 2rem;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: var(--navy);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      -moz-appearance: textfield;
+    }
+    .calc-input::-webkit-outer-spin-button,
+    .calc-input::-webkit-inner-spin-button { -webkit-appearance: none; appearance: none; }
+    .calc-input:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(22,5,53,0.1);
+      background: var(--white);
+    }
+
+    .calc-input-years {
+      padding-right: 5.5rem;
+      padding-left: 1rem;
+    }
+
+    .calc-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--cream);
+      border-radius: 1rem;
+    }
+
+    .calc-stat {
+      text-align: center;
+    }
+
+    .calc-stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .calc-stat-value {
+      font-size: 1.375rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .calc-stat-value.highlight {
+      color: #1a7a4a;
+    }
+
+    .calc-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .calc-copy-headline {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .calc-copy-body {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .calc-copy-cta {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.5;
+      padding-top: 0.25rem;
+      border-top: 1.5px solid rgba(22,5,53,0.1);
+    }
+
+    .calc-chart-wrap {
+      position: relative;
+      height: 280px;
+    }
+
+    @media (max-width: 600px) {
+      .calc-card { padding: 1.75rem 1.25rem; }
+      .calc-inputs { grid-template-columns: 1fr; }
+      .calc-stats { grid-template-columns: 1fr 1fr; }
+      .calc-stats .calc-stat:last-child { grid-column: 1 / -1; }
+      .calc-chart-wrap { height: 220px; }
+    }
+
+    @media (max-width: 900px) and (min-width: 540px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cards-grid .will-card:last-child {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 0.75rem);
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ──────────────────────────────────────────────── -->
+  <header class="navbar">
+    <nav class="navbar-inner" aria-label="Main navigation">
+      <a href="#" class="logo">
+        <span>octopus </span><strong>legacy</strong>
+      </a>
+
+      <ul class="nav-links">
+        <li>
+          <a href="#">About Us <span class="nav-chevron">›</span></a>
+        </li>
+        <li>
+          <a href="#">Plan for death <span class="nav-chevron">›</span></a>
+        </li>
+        <li>
+          <a href="#">Get support after loss <span class="nav-chevron">›</span></a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#" class="btn-start-nav">Let's get started</a>
+        <a href="#" class="nav-signin">Sign in</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── HERO ───────────────────────────────────────────────── -->
+  <section class="hero-section" aria-label="Hero">
+    <div class="hero-card">
+      <div class="hero-content">
+        <h1 class="hero-heading">
+          Professional will writing services, tailored to you.
+        </h1>
+        <p class="hero-subtext">
+          Finding the right type of will can feel complex - we're here to make it simple. Trusted by 700,000+ families to plan ahead with confidence.
+        </p>
+
+        <!-- Trustpilot -->
+        <div class="trustpilot-row" aria-label="Trustpilot rating: Excellent">
+          <span class="tp-excellent">Excellent</span>
+          <div class="tp-stars" aria-hidden="true">
+            <!-- 4 full stars -->
+            <div class="tp-star">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="tp-star">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="tp-star">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="tp-star">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <!-- Half star -->
+            <div class="tp-star tp-star-half">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+          </div>
+          <span class="tp-label">Trustpilot</span>
+        </div>
+
+        <a href="#" class="btn-hero">
+          Let's get started
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <p class="hero-photo-credit">Laura, Head of Legal and her late Grandmother, Mamá Inés</p>
+    </div>
+  </section>
+
+  <!-- ── WILLS SECTION ──────────────────────────────────────── -->
+  <section class="wills-section" aria-labelledby="wills-title">
+    <div class="wills-inner">
+      <h2 class="section-title" id="wills-title">What are our different types of wills?</h2>
+
+      <div class="cards-grid">
+        <!-- Single Will -->
+        <article class="will-card">
+          <span class="will-label">Single Will</span>
+          <p class="will-desc">Protect your assets and the people you love</p>
+          <p class="will-price">£150</p>
+          <ul class="will-features">
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              Reviewed by our expert team and will writers
+            </li>
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              Completed online, or over a video/in-person appointment
+            </li>
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              Suitable for simple estates
+            </li>
+          </ul>
+        </article>
+
+        <!-- Mirror Will -->
+        <article class="will-card">
+          <span class="will-label">Mirror Will</span>
+          <p class="will-desc">Protect your and your partner's assets and wishes</p>
+          <p class="will-price">£250</p>
+          <ul class="will-features">
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              Reviewed by our expert team and will writers
+            </li>
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              Completed online, or over a video/in-person appointment
+            </li>
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              Suitable for couples with simple estates
+            </li>
+          </ul>
+        </article>
+
+        <!-- Will with trust -->
+        <article class="will-card">
+          <span class="will-label">Will with trust</span>
+          <p class="will-desc">Protection for circumstances that are a little more complex</p>
+          <p class="will-price">£450</p>
+          <ul class="will-features">
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              With an expert will writer
+            </li>
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              Completed over a video or in-person appointment
+            </li>
+            <li class="will-feature">
+              <span class="check-icon" aria-hidden="true">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+              </span>
+              Suitable if you want to have a say in when and how assets are passed on
+            </li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="btn-center-wrap">
+        <a href="#" class="btn-get-started">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LPA SECTION ────────────────────────────────────────── -->
+  <section class="lpa-section" aria-labelledby="lpa-title">
+    <div class="lpa-inner">
+      <div class="title-subtitle-blocks">
+        <h2 class="lpa-heading" id="lpa-title">
+          Creating your LPA doesn't need to be complicated
+        </h2>
+        <p class="lpa-subtext">
+          You can create your LPA online or over the phone with help from our expert legal team. We handle the hard parts and send your completed forms straight to your door.
+        </p>
+        <div class="lpa-card">
+          <span class="lpa-service-label">Our Full Service</span>
+          <p class="lpa-price-headline">£699 for our full LPA service. Let us do the hard work for you.</p>
+          <p class="lpa-detail">We'll discuss your wishes and create your LPA via a home, phone or video consultation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SAVINGS CALCULATOR ─────────────────────────────────── -->
+  <section class="calc-section" aria-labelledby="calc-title">
+    <div class="calc-inner">
+      <div class="calc-card">
+        <div class="calc-header">
+          <h2 class="calc-title" id="calc-title">Probate takes time. Cash shouldn't sit idle.</h2>
+          <p class="calc-subtitle">Average UK probate timelines can range from 6 to 18 months, and longer for complex estates.</p>
+          <p class="calc-subtitle" style="margin-top:0.75rem;">Grow money and protect it against inflation by taking advantage of a market leading interest rate of 4% (HSBC savings account rates 1.05% for comparison).</p>
+          <span class="calc-rate-badge">
+            £
+            Based on 4% annual interest rate, compounded daily
+          </span>
+        </div>
+
+        <div class="calc-inputs">
+          <div class="calc-field">
+            <label class="calc-label" for="calc-amount">How much do you want to save?</label>
+            <div class="calc-input-wrap">
+              <span class="calc-input-prefix">£</span>
+              <input
+                id="calc-amount"
+                class="calc-input"
+                type="text"
+                inputmode="numeric"
+                value="100,000"
+                placeholder="100,000"
+                aria-label="Deposit amount in pounds"
+              />
+            </div>
+          </div>
+
+          <div class="calc-field">
+            <label class="calc-label" for="calc-months">How long do you want to save for?</label>
+            <div class="calc-input-wrap">
+              <input
+                id="calc-months"
+                class="calc-input calc-input-years"
+                type="number"
+                min="1"
+                max="600"
+                value="12"
+                placeholder="12"
+                aria-label="Savings duration in months"
+              />
+              <span class="calc-input-suffix">months</span>
+            </div>
+            <span style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem;">months</span>
+          </div>
+        </div>
+
+        <div class="calc-stats">
+          <div class="calc-stat">
+            <div class="calc-stat-label">Total saved</div>
+            <div class="calc-stat-value" id="stat-deposited">£60,000</div>
+          </div>
+          <div class="calc-stat">
+            <div class="calc-stat-label">Interest earned</div>
+            <div class="calc-stat-value highlight" id="stat-interest">£0</div>
+          </div>
+          <div class="calc-stat">
+            <div class="calc-stat-label">Final balance</div>
+            <div class="calc-stat-value" id="stat-total">£60,000</div>
+          </div>
+        </div>
+
+        <div class="calc-chart-wrap">
+          <canvas id="savings-chart" aria-label="Savings growth chart"></canvas>
+        </div>
+
+        <div style="display:flex; justify-content:center; margin-top:2rem;">
+          <a href="#" class="btn-get-started">
+            Start now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const ANNUAL_RATE = 4.00 / 100;
+
+      const amountInput  = document.getElementById('calc-amount');
+      const monthsInput  = document.getElementById('calc-months');
+
+      function formatWithCommas(val) {
+        const digits = val.replace(/[^\d]/g, '');
+        return digits ? parseInt(digits, 10).toLocaleString('en-GB') : '';
+      }
+
+      function getRawAmount() {
+        return parseFloat(amountInput.value.replace(/,/g, '')) || 0;
+      }
+
+      amountInput.addEventListener('input', () => {
+        const pos = amountInput.selectionStart;
+        const prevLen = amountInput.value.length;
+        amountInput.value = formatWithCommas(amountInput.value);
+        // keep cursor roughly in place
+        const diff = amountInput.value.length - prevLen;
+        amountInput.setSelectionRange(pos + diff, pos + diff);
+        update();
+      });
+      const statDeposited = document.getElementById('stat-deposited');
+      const statInterest  = document.getElementById('stat-interest');
+      const statTotal     = document.getElementById('stat-total');
+
+      function fmt(n) {
+        return '£' + Math.round(n).toLocaleString('en-GB');
+      }
+
+      function calcData(principal, months) {
+        const labels = [];
+        const balances = [];
+        const deposits = [];
+        const dailyRate = ANNUAL_RATE / 365;
+        const daysPerMonth = 365 / 12;
+
+        for (let m = 1; m <= months; m++) {
+          const days = Math.round(daysPerMonth * m);
+          const balance = principal * Math.pow(1 + dailyRate, days);
+          labels.push('Month ' + m);
+          balances.push(parseFloat(balance.toFixed(2)));
+          deposits.push(principal);
+        }
+        return { labels, balances, deposits };
+      }
+
+      const ctx = document.getElementById('savings-chart').getContext('2d');
+
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: 'Total balance',
+              data: [],
+              borderColor: '#160535',
+              backgroundColor: 'rgba(22,5,53,0.08)',
+              borderWidth: 2.5,
+              fill: true,
+              tension: 0.4,
+              pointRadius: 3,
+              pointBackgroundColor: '#160535',
+              order: 2,
+            },
+            {
+              label: 'If left untouched',
+              data: [],
+              borderColor: 'rgba(22,5,53,0.55)',
+              backgroundColor: 'transparent',
+              borderWidth: 2,
+              borderDash: [6, 4],
+              fill: false,
+              tension: 0,
+              pointRadius: 0,
+              order: 1,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              align: 'start',
+              labels: {
+                font: { family: 'Figtree', size: 12, weight: '500' },
+                color: '#4a4060',
+                boxWidth: 20,
+                boxHeight: 2,
+                padding: 20,
+                usePointStyle: true,
+                pointStyle: 'line',
+              }
+            },
+            tooltip: {
+              backgroundColor: '#160535',
+              titleFont: { family: 'Figtree', size: 12, weight: '600' },
+              bodyFont: { family: 'Figtree', size: 13 },
+              padding: 12,
+              cornerRadius: 8,
+              callbacks: {
+                label: ctx => ' ' + ctx.dataset.label + ': £' + Math.round(ctx.parsed.y).toLocaleString('en-GB')
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: { family: 'Figtree', size: 11 },
+                color: '#4a4060',
+                maxTicksLimit: 10,
+              },
+              border: { display: false },
+            },
+            y: {
+              grid: { color: 'rgba(22,5,53,0.06)' },
+              border: { display: false, dash: [4, 4] },
+              ticks: {
+                font: { family: 'Figtree', size: 11 },
+                color: '#4a4060',
+                callback: v => '£' + (v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v),
+              },
+              afterBuildTicks: axis => { axis.ticks = axis.ticks.slice(1); }
+            }
+          }
+        }
+      });
+
+      function update() {
+        const principal = Math.max(1, getRawAmount());
+        const months    = Math.min(600, Math.max(1, parseInt(monthsInput.value) || 1));
+        const { labels, balances, deposits } = calcData(principal, months);
+
+        const finalBalance   = balances[balances.length - 1] || 0;
+        const totalDeposited = principal;
+        const interest       = finalBalance - totalDeposited;
+
+        statDeposited.textContent = fmt(totalDeposited);
+        statInterest.textContent  = fmt(interest);
+        statTotal.textContent     = fmt(finalBalance);
+
+        chart.data.labels = labels;
+        chart.data.datasets[0].data = balances;
+        chart.data.datasets[1].data = deposits;
+        chart.options.scales.y.min = Math.floor(principal * 0.85);
+        chart.update('active');
+      }
+
+      monthsInput.addEventListener('input', update);
+
+      amountInput.value = formatWithCommas(amountInput.value);
+      update();
+    })();
+  </script>
+
+</body>
+</html>
